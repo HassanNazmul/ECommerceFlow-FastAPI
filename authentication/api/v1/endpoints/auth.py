@@ -8,6 +8,7 @@ from authentication.models.user import User, UserCreate, UserRead, UserLogin, To
 from authentication.services.auth_service import create_user
 from authentication.services.auth_service import verify_password
 from authentication.services.jwt_service import create_access_token
+from authentication.services.user_profile import profile
 
 router = APIRouter()
 
@@ -39,3 +40,8 @@ def login(data: UserLogin, session: Session = Depends(get_session)):
     # Create a JWT token
     token = create_access_token({"sub": str(user.id)})
     return {"access_token": token, "token_type": "bearer"}
+
+
+@router.get("/profile", response_model=UserRead)
+def get_profile(current_user: UserRead = Depends(profile)):
+    return current_user
