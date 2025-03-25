@@ -1,0 +1,29 @@
+💡 Suggestions for the Next Step
+
+	1.	Show me your /register and /login logic (likely inside api/v1/endpoints/auth.py) so I can review how you’re:
+	•	Hashing passwords
+	•	Generating tokens
+	•	Validating credentials
+
+	2.	Add token generation & verification utils
+    If you haven’t already, we can build:
+	•	hash_password() and verify_password()
+	•	create_access_token() and decode_token()
+
+	3.	Review `auth_service.py` and `jwt_service.py` to confirm:
+	•	Passwords are hashed securely using passlib + bcrypt
+	•	JWTs include an expiration (`exp`) and use a secure algorithm (`HS256`)
+	•	Secret key is loaded from `.env`
+
+	4.	Consider adding rate limiting to login endpoint
+	•	Helps prevent brute-force attacks
+	•	Can be done using Redis middleware or at the API Gateway level
+
+	5.	Add unit tests for:
+	•	Registration
+	•	Login and JWT issuance
+	•	Protected endpoints (like `/profile`) using token auth
+
+	6.	Optional: Implement refresh tokens
+	•	Allow longer sessions without keeping access tokens alive too long
+	•	Helps with mobile apps or long-lived sessions
