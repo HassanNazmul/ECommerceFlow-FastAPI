@@ -1,0 +1,27 @@
+### Ping the authentication service
+GET {{host}}/auth/ping
+
+### Register a new user
+POST {{host}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "nahid",
+  "first_name": "Nazmul",
+  "last_name": "Hassan",
+  "email": "NHassan96@outlook.com",
+  "password": "rootadmin"
+}
+
+### Authenticate a user
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "nahid",
+  "password": "rootadmin"
+}
+
+### Get user profile
+GET {{host}}/auth/profile
+Authorization: Bearer
