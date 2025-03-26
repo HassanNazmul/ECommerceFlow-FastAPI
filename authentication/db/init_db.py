@@ -3,6 +3,7 @@ from sqlmodel import SQLModel
 
 from authentication.db.session import engine
 from authentication.models.user import User  # noqa
+from authentication.models.revoked_token import RevokedToken  # noqa
 
 
 def init_db():

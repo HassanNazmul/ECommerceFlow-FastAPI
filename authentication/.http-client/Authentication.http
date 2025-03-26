@@ -22,6 +22,12 @@ Content-Type: application/json
   "password": "rootadmin"
 }
 
+### Logout a user
+POST {{host}}/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQzMDMzMTA4LCJqdGkiOiJkNWQzYmVhMC1iZGU3LTQyMWUtOGExYy0yODRkOTQwYTBjYWYifQ.c10N_PGcRubVhOg2QWP8osSZcQExWnnMMduC_AG-hT0
+
+
 ### Get user profile
 GET {{host}}/auth/profile
 Authorization: Bearer
+
