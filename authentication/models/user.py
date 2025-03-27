@@ -54,3 +54,12 @@ class UserRead(SQLModel):
 class UserPasswordUpdate(SQLModel):
     old_password: str
     new_password: str
+
+
+# Schema for User Update
+class UserUpdate(SQLModel):
+    username: Optional[str] = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    email: Optional[str] = None
+    password: Optional[str] = None

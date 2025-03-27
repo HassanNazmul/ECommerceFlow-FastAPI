@@ -41,3 +41,14 @@ Content-Type: application/json
   "old_password": "rootadmin",
   "new_password": "newrootadmin"
 }
+
+
+### Update user profile
+PUT {{host}}/auth/update-profile
+Authorization: Bearer
+Content-Type: application/json
+
+{
+  "first_name": "Nazmul",
+  "email": "NHassan@outlook.com"
+}

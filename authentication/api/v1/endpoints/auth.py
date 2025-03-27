@@ -6,11 +6,11 @@ from datetime import datetime
 
 from authentication.db.session import get_session
 from authentication.models.revoked_token import RevokedToken
-from authentication.models.user import User, UserCreate, UserRead, UserLogin, Token, UserPasswordUpdate
+from authentication.models.user import User, UserCreate, UserRead, UserLogin, Token, UserPasswordUpdate, UserUpdate
 from authentication.services.auth_service import create_user, change_password
 from authentication.services.auth_service import verify_password
 from authentication.services.jwt_service import create_access_token, verify_token, is_token_revoked
-from authentication.services.user_profile import profile, oauth2_scheme
+from authentication.services.user_profile import profile, oauth2_scheme, update_user
 
 router = APIRouter()
 
@@ -95,3 +95,13 @@ def change_user_password(
         session=session
     )
     return {"detail": "Password updated successfully"}
+
+
+@router.put("/update-profile", response_model=UserRead)
+def update_profile(
+        updates: UserUpdate,
+        current_user: UserRead = Depends(profile),
+        session: Session = Depends(get_session)
+):
+    updated_user = update_user(current_user.id, updates, session)
+    return updated_user
