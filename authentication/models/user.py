@@ -48,3 +48,9 @@ class UserRead(SQLModel):
     first_name: str
     last_name: str
     email: str
+
+
+# Schema for Password Reset
+class UserPasswordUpdate(SQLModel):
+    old_password: str
+    new_password: str

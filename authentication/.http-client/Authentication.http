@@ -24,10 +24,20 @@ Content-Type: application/json
 
 ### Logout a user
 POST {{host}}/auth/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQzMDMzMTA4LCJqdGkiOiJkNWQzYmVhMC1iZGU3LTQyMWUtOGExYy0yODRkOTQwYTBjYWYifQ.c10N_PGcRubVhOg2QWP8osSZcQExWnnMMduC_AG-hT0
+Authorization: Bearer
 
 
 ### Get user profile
 GET {{host}}/auth/profile
 Authorization: Bearer
 
+
+### Update user Password
+POST {{host}}/auth/change-password
+Authorization: Bearer
+Content-Type: application/json
+
+{
+  "old_password": "rootadmin",
+  "new_password": "newrootadmin"
+}

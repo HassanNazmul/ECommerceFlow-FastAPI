@@ -49,3 +49,18 @@ def create_user(user_data: UserCreate, session: Session) -> User:
 # Password verification
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
+
+
+# Update user password
+def change_password(user_id: int, old_password: str, new_password: str, session: Session) -> None:
+    user = session.exec(select(User).where(User.id == user_id)).first()
+
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    if not verify_password(old_password, user.hashed_password):
+        raise HTTPException(status_code=400, detail="Old password is incorrect")
+
+    user.hashed_password = get_password_hash(new_password)
+    session.add(user)
+    session.commit()

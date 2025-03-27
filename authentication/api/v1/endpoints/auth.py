@@ -6,8 +6,8 @@ from datetime import datetime
 
 from authentication.db.session import get_session
 from authentication.models.revoked_token import RevokedToken
-from authentication.models.user import User, UserCreate, UserRead, UserLogin, Token
-from authentication.services.auth_service import create_user
+from authentication.models.user import User, UserCreate, UserRead, UserLogin, Token, UserPasswordUpdate
+from authentication.services.auth_service import create_user, change_password
 from authentication.services.auth_service import verify_password
 from authentication.services.jwt_service import create_access_token, verify_token, is_token_revoked
 from authentication.services.user_profile import profile, oauth2_scheme
@@ -80,3 +80,18 @@ def get_profile(
         raise HTTPException(status_code=401, detail="Token has been revoked")
 
     return current_user
+
+
+@router.post("/change-password")
+def change_user_password(
+        password_data: UserPasswordUpdate,
+        current_user: UserRead = Depends(profile),
+        session: Session = Depends(get_session)
+):
+    change_password(
+        user_id=current_user.id,
+        old_password=password_data.old_password,
+        new_password=password_data.new_password,
+        session=session
+    )
+    return {"detail": "Password updated successfully"}
