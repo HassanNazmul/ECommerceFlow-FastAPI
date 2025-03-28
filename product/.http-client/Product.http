@@ -1,0 +1,16 @@
+### Ping the product service
+GET {{host}}/product/ping
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQzMTI2Nzg3LCJqdGkiOiJiZmM0ZTIzZS1jYjYyLTQ3YjMtYjU4NS1iNGRhOTA1ZTAxMTYifQ.EECQon3VW1IzsQkwUQM5eXIlQMshaAuy0NTkZ8dHNsRnI4DPZUuaMGSMEMsHb1II6k0yuTgPxQRqci8anI8-a9XYyOVncjvIVitk9RwzVp3SjsVvv0_deXaNi2C7zXxhYCQUCIOsYm0LWB2QoAb2TLm_oKNIZKPwzpk0OtRsXn1Yv5IbUMN7tkKiKOsVanK9J7gaFKEeC-PlxYtpDLHR4CdWrB91SpqEePHBx3v9FvBZHXvXpgUkibiTAyes1roac1LiDhvr-CsPANBSXYX321G1hdQAV7QeSh-DDwvKiyKpAfm96ZFpC6OaMecwKXfiI2HSp7ASGL5mL-94cBwP3A
+
+### Create a product
+POST {{host}}/product/new-product
+Content-Type: application/json
+
+{
+  "name": "Product 2",
+  "price": 100
+}
+
+
+### Get all products
+GET {{host}}/product/products
